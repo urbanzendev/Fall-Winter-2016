@@ -1,0 +1,249 @@
+</div>
+<div class="mobile_hidden">
+	<div class="section vheightFull" id="second">
+		<a name="pagecontent" id="pagecontent"></a>
+		<div class="tableCell center">
+			<div class="container center">
+				<div class="center">
+					<h4 class="light">Stand Together To End Gun Violence</h4>
+					<h1 class="light">Not One More Initiative</h1>
+					<a href="/collections/not-one-more" class="cta">
+						<span>Shop Bracelet Collection</span>
+					</a><br>
+					<a href="/pages/not-one-more" class="cta">
+						<span>Join The Movement</span>
+					</a>
+				</div>		
+			</div>
+		</div>
+	</div>
+	<div class="section vheightFull" id="first">
+		<div class="tableCell">
+			<div class="container center">
+				<div class="left">
+					<h4 class="light">ARTISAN TOUCH</h4>
+					<h1 class="light">Modern Souls</h1>
+					<a href="/collections/women/dresses" class="cta">
+						<span>shop collection</span>
+					</a>
+					<br>
+					<a href="/pages/modern-souls-collection" class="cta">
+						<span>explore lookbook</span>
+					</a>
+				</div>		
+				{% if settings.homepage_arrow %}
+				<a href="#pagecontent" class="scroll-arrow animated fadeInDown mobile_hidden"></a>
+				{% endif %}
+			</div>
+		</div>
+	</div>
+	
+	<div class="section vheightFull" id="decor">
+		<a name="pagecontent" id="pagecontent"></a>
+		<div class="tableCell center">
+			<div class="container center">
+				<div class="center">
+					<h4 class="light">MODERN PROPORTIONS</h4>
+					<h1 class="light">THE ESSENCE OF HARMONY & TRANQUILITY</h1>
+					<a href="/collections/home-decor" class="cta">
+						<span>Shop Home Décor</span>
+					</a>
+				</div>		
+			</div>
+		</div>
+	</div>
+	<div class="section clearfix center">
+		<h2>Our Philosophy</h2>
+		<p class="p2">"Urban Zen embodies my philanthropic passions and my love for design.<span class="mobile_hidden"><br> I am dressing and addressing people both on the inside and the outside <br>- making them aware of what is happening in the world today.</span>" <br></p><h5 class="no-btm-pad">- Donna Karan</h5>
+	</div>
+	<div class="section third">
+		<div class="container">
+			<div class="cell-video-container">
+				<iframe src="" data-src="https://player.vimeo.com/video/165453885" width="100%" height="auto" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+			</div>
+		</div>
+	</div>
+	<div class="section clearfix center">
+		<h2>We promote economic development for artisan communities<br> through job creation and vocational education.</h2>
+	</div>
+	<div class="section third">
+		<div class="container">
+			<div class="cell-video-container">
+				<iframe src="" data-src="https://player.vimeo.com/video/123442433" width="100%" height="auto" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+			</div>
+		</div>
+	</div>
+	<div class="section clearfix center">
+		<h2>We’re inspired by the craftsmanship of cultures around the world.</h2>
+	</div>
+	<div class="section" id="full">
+		<div class="tableCell">
+			<div class="container inner white">
+				<div class="inner-container">
+					<div class="one-half alpha thumbnail animated fadeIn">
+					<img width="600" height="429" src="{{ 'loader.gif' | asset_url | split:'?' | first  }}" data-src="{{'hap_banner_grande.jpg' | asset_url | split:'?' | first}}" alt="A Message From Our Founder, Donna Karan">
+					</div><div class="one-half center black-bg inner">
+						<h4 class="light">Our Founder</h4>
+						<h1 class="light">Donna Karan</h1>
+						<p class="p2 light">Explore the journey of an iconic woman, mother, designer<span class="mobile_hidden"></span> and philanthropist, as she balances mind, body, and soul.<span class="mobile_hidden"> Through her travels she seeks endless inspiration and shares her passion for the past, present, and future.</span></p>
+						<br>
+						<a href="/blogs/donnas-voice" class="btn cta-button"><span>Read Donna's Voice</span></a>
+					</div>
+				</div>
+				{% comment %}	
+				<div class="feature_divider"></div>
+				<h2 class="center mobile_hidden">{{ blogs[settings.blog_widget_select].title }}</h2>
+				<div class="sixteen columns">
+					{% for article in blogs[settings.blog_widget_select].articles limit: settings.home_page_articles %}
+					<div class="{% if settings.home_page_articles == "2" %}eight columns{% elsif settings.home_page_articles == "3" %}one-third column{% else %}four columns{% endif %} article">
+						{% if article.image %}
+						<a href="{{ article.url }}" title="{{ article.title | escape }}">
+							<img width="240" height="148" src="{{ article.image | img_url: 'medium' | split:'?' | first }}" alt="{{ article.title | escape }}" />
+						</a>
+						{% endif %}
+						<h5 class="sub_title">
+							<a href="{{ article.url }}" title="{{ article.title | escape }}">{{ article.title | truncatewords:5 | truncate:32  }}</a>
+						</h5>
+					</div>
+					{% endfor %}
+				</div>
+				<div class="feature_divider clearfix"></div>
+						{% endcomment %}
+				<div class="inner center clearfix">
+					<h4>Raise Awareness<span class="desktop_hidden"><br></span> Inspire Change</h4>
+					<h1>Urban Zen Foundation</h1>
+					<a href="/pages/urban-zen-foundation" class="btn cta-button"><span>Learn More</span></a>
+				</div>
+			</div>			
+		</div>
+	</div>
+</div>
+<div class="desktop_hidden" id="slideshow">
+	<div class="section hp-static" id="accessories">
+		<div class="tableCell">
+			<div class="container center">
+
+			</div>
+		</div>
+	</div>
+	<div class="section NOM">
+		<div class="tableCell">
+			<div class="center">
+				<div class="center">
+					<h4 class="nom">NOT ONE MORE</h4>
+					<h2 class="dark">STAND TOGETHER<br>TO END GUN VIOLENCE</h2>
+					<a href="/collections/not-one-more" class="cta dark">
+						<span>Shop Bracelet Collection</span>
+					</a><br>
+					<a href="/pages/not-one-more" class="cta dark">
+						<span>Join The Movement</span>
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="section slider bottom-marg" id="homeslider">
+		<div class="container slideshow">
+			{% comment %}
+			<div class="homeslider desktop_hidden fadeIn">
+				<ul class="slides">
+			    	<li class="alpha inline thumbnail animated fadeIn">
+						<img width="403" height="600" src="{{ 'loader.gif' | asset_url | split:'?' | first }}" data-src="{{ 'HP_M_Main_Slideshow_1_grande.jpg' | asset_url | split:'?' | first }}" data-src-retina="{{ 'HP_M_Main_Slideshow_1_1024x1024.jpg' | asset_url | split:'?' | first }}" alt="Urban Zen - Tribal Graphics" />
+					</li>
+					<li class="alpha inline thumbnail animated fadeIn">
+						<img width="403" height="600" src="{{ 'loader.gif' | asset_url | split:'?' | first }}" data-src="{{ 'HP_M_Main_Slideshow_2_grande.jpg' | asset_url | split:'?' | first }}" data-src-retina="{{ 'HP_M_Main_Slideshow_2_1024x1024.jpg' | asset_url | split:'?' | first }}" alt="Urban Zen - Tribal Graphics"  />
+					</li>
+					<li class="alpha inline thumbnail animated fadeIn">
+						<img width="403" height="600" src="{{ 'loader.gif' | asset_url | split:'?' | first }}" data-src="{{ 'HP_M_Main_Slideshow_3_grande.jpg' | asset_url | split:'?' | first }}" data-src-retina="{{ 'HP_M_Main_Slideshow_3_1024x1024.jpg' | asset_url | split:'?' | first }}" alt="Urban Zen - Tribal Graphics" />
+					</li>
+					<li class="alpha inline thumbnail animated fadeIn">
+						<img width="403" height="600" src="{{ 'loader.gif' | asset_url | split:'?' | first }}" data-src="{{ 'HP_M_Main_Slideshow_4_grande.jpg' | asset_url | split:'?' | first }}" data-src-retina="{{ 'HP_M_Main_Slideshow_4_1024x1024.jpg' | asset_url | split:'?' | first }}" alt="Urban Zen - Tribal Graphics" />
+					</li>
+				</ul>
+			</div>
+			{% endcomment %}
+			<div class="homeslider desktop_hidden fadeIn">
+				<ul class="slides">
+			    	<li class="alpha inline thumbnail animated fadeIn" id="slide1">
+						
+					</li>
+					<li class="alpha inline thumbnail animated fadeIn" id="slide2">
+						
+					</li>
+					<li class="alpha inline thumbnail animated fadeIn" id="slide3">
+					
+					</li>
+				</ul>
+			</div>
+			<div class="center absolute same-width-button">
+				<h1 class="light">Modern Souls</h1>
+				<a href="/collections/women/dresses" class="btn cta-button transparent"><span>Shop</span></a><br><br>
+				<a href="/pages/modern-souls-collection" class="btn cta-button transparent"><span>Explore</span></a>
+			</div>
+		</div>
+	</div>	
+	<div class="section hp-static" id="decor">
+		<div class="tableCell">
+			<div class="container center">
+				<div class="center">
+					<h1 class="light nowrap">HOME DÉCOR</h1>			
+					<a href="/collections/home-decor" class="cta">
+						<span>Shop</span>
+					</a>
+				</div>		
+			</div>
+		</div>
+	</div>
+	<div class="section" id="videos">
+		<div class="tableCell">
+			<div class="container inner white">
+				<div class="inner-container">
+					<div class="center alpha thumbnail animated fadeIn">
+
+						<img width="600" height="429" src="{{ 'loader.gif' | asset_url | split:'?' | first  }}" data-src="{{'haiti-video.jpg' | asset_url | split:'?' | first}}" alt="A Message From Our Founder, Donna Karan" >
+						<br>
+						<p class="p2 light">We promote economic development for artisan communities through job creation and vocational education.</p>
+						<a href="https://player.vimeo.com/video/165453885" class="fancybox fancybox.iframe btn cta-button"><span>Watch D.O.T Video</span></a>
+					</div>
+				</div>
+				<div class="inner-container">
+					<div class="center alpha thumbnail animated fadeIn">
+						<img width="600" height="429" src="{{ 'loader.gif' | asset_url | split:'?' | first  }}" data-src="{{'bali-video.jpg' | asset_url | split:'?' | first}}" alt="A Message From Our Founder, Donna Karan">
+						<br>
+						<p class="p2 light">We’re inspired by the craftsmanship of cultures around the world.</p>
+						<a href="https://player.vimeo.com/video/123442433" class="fancybox fancybox.iframe btn cta-button"><span>Watch Bali Video</span></a>		
+					</div>
+				</div>
+			</div>			
+		</div>
+	</div>
+	<div class="section hp-static" id="founder">
+		<div class="tableCell">
+			<div class="container center">
+				<div class="center">
+					<h1 class="light nowrap">Our Founder</h1>			
+					<a href="/blogs/donnas-voice" class="cta">
+						<span>Read Donna's Blog</span>
+					</a>
+				</div>		
+			</div>
+		</div>
+	</div>
+	<div class="section clearfix center">
+		<h2>"I have spent decades dressing people.<br/>Now I want to  address them."</h2>
+		<img width="60" src="{{ 'sig_small.png' | asset_url | split:'?' | first }}" alt="Donna's Signature" />
+		<h6>Donna Karan</h6>
+	</div>
+	<div class="section hp-static" id="stores">
+		<div class="tableCell">
+			<div class="container center">
+				<div class="center">
+					<h1 class="light nowrap">Our Stores</h1>			
+					<a href="/pages/stores" class="cta">
+						<span>Visit Us</span>
+					</a>
+				</div>		
+			</div>
+		</div>
+	</div>
+</div>

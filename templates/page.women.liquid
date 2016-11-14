@@ -1,0 +1,12 @@
+{% if settings.collection_sidebar %}
+  {% include 'sidebar' %}
+  <div class="twelve columns">
+{% else %}
+  <div class="sixteen columns">
+{% endif %}
+TEST
+  {% assign linklist = linklists["linklist-handle"] %}
+  {% assign collections_per_row = settings.frontpage_collections_per_row %}
+
+  <br class="clear" />
+</div>

@@ -1,0 +1,46 @@
+</div>
+<div class="cell-video-container">
+	<iframe id="vimeo-player" src="https://player.vimeo.com/video/87612998?api=1" width="100%" height="auto" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+</div>
+<div class="section">
+	<div class="one-third">
+		<a href="" title="">
+			<img src="" alt="" />
+		</a>
+		<div class="text">
+			<h2>Haiti Artisan Project</h2>
+		</div>
+	</div>
+	<div class="one-third">
+		<a href="" title="">
+			<img src="" alt="" />
+		</a>
+		<div class="text">
+			<h2>Integrative Therapy Program</h2>
+		</div>
+	</div>
+	<div class="one-third">
+		<a href="" title="">
+			<img src="" alt="" />
+		</a>
+		<div class="text">
+			<h2>Empowering Children</h2>
+		</div>
+	</div>
+</div>
+<div class="section center">
+	<h3 class="yellow">Mission</h3>
+	<p>The Urban Zen Foundation creates, connects and collaborates to raise awareness and inspire change in the areas of well-being, preservation of cultures and empowering children.</p>
+</div>
+<script src="https://player.vimeo.com/api/player.js"></script>
+<script type="text/javascript">
+    var iframe = document.querySelector('iframe');
+    var player = new Vimeo.Player(iframe);
+        player.on('play', function() {
+			$('.drawer-menu').fadeTo( "slow", 0 );
+   	 	});
+        player.on('pause', function() {
+			$('.drawer-menu').fadeTo( "slow", 1 );
+   	 	});
+	
+</script>

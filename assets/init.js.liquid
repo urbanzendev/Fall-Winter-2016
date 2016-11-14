@@ -1,0 +1,44 @@
+
+	
+  $(window).load(function() {
+    $('.simpleslider').flexslider({
+	 animation: "slide",
+	    animationLoop: true,
+		slideshowSpeed: 3000,
+	    start: function(){
+	         $('img').show(); 
+	    },
+    });
+  });
+  
+  
+$(function() {  
+ $('.accordion > dd').hide();
+
+  $('.accordion > dt > a').click(function() {
+    if(!$(this).parent().next().is(":visible")) {
+     $(this).find('small.right').html('<span class="up-angle"></span>');
+    $(this).parent().next().slideDown();
+    } else if($(this).parent().next().is(":visible")){
+      $(this).parent().next().slideUp();
+      $(this).parent().next('.accordion small.right').html('&#710;');
+      $(this).next('small.right').html('<span class="down-angle"></span>');
+      if($(this).find('small.right').html('<span class="up-angle"></span>')) {
+        $(this).find('small.right').html('<span class="down-angle"></span>');
+      } else if($(this).find('small.right').html('<span class="down-angle"></span>')) {
+        $(this).find('small.right').html('<span class="up-angle"></span>');
+      }
+    }
+        return false;
+  });
+});
+
+function init() {
+var vidDefer = document.getElementsByTagName('iframe');
+for (var i=0; i<vidDefer.length; i++) {
+if(vidDefer[i].getAttribute('data-src')) {
+vidDefer[i].setAttribute('src',vidDefer[i].getAttribute('data-src'));
+} } }
+window.onload = init;
+
+

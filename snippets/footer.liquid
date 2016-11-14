@@ -1,0 +1,11 @@
+<footer>
+	<div class="container">
+		<h3 class="light">Join our Newsletter</h3>
+		{% include 'newsletter' %}
+		<ul class="footer_menu">
+			{% for link in linklists[settings.footer_linklist_1].links %}
+			<li class="{% cycle 'left', 'center','right' %}"><a href="{{ link.url }}">{{ link.title }}</a></li>
+			{% endfor %}
+		</ul>
+	</div>
+</footer>

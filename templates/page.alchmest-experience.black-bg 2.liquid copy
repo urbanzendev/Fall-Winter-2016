@@ -1,0 +1,55 @@
+<div class="article">
+	<div class="container">
+		<div class="section center">
+			<h1>{{page.title}}</h1><br>
+			<h2>The new Fall Collection, inspired by the nomadic traveler</h2>
+			<p>Everything is accessible to us - here , today, this minute, not six months from now. Presenting and experiencing our Fall 2016 collection in September with press and directly to the consumer, all at once. No delay. I've always said that's how a customer wants to shop, and that's how I'm showing. The new season is in season. Enjoy</p>
+		</div>
+		<div class="section clearfix center">
+			<div class="cell-video-container">
+				<iframe src="https://player.vimeo.com/video/182799371?color=FFFFFF&title=0&byline=0&portrait=0" width="100%" height="auto" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+			</div>
+			<div class="alchemistSlider relative_slider black-nav">
+				<br>
+				<h2>Experience the Alchemist Installation</h2>
+				<br>
+				<ul class="slides">
+					<li class="item">
+						<a rel="gallery1" class="fancybox" href="//cdn.shopify.com/s/files/1/1088/8842/files/Installation_1.jpg">
+							<img src="//cdn.shopify.com/s/files/1/1088/8842/files/Installation_1_large.jpg" alt="" />
+						</a>
+					</li>
+					<li class="item">
+						<a rel="gallery1" class="fancybox" href="//cdn.shopify.com/s/files/1/1088/8842/files/Installation_2.jpg">
+							<img src="//cdn.shopify.com/s/files/1/1088/8842/files/Installation_2_large.jpg" alt="" />
+						</a>
+					</li>
+					<li class="item">
+						<a rel="gallery1" class="fancybox" href="//cdn.shopify.com/s/files/1/1088/8842/files/Installation_3.jpg">
+							<img src="//cdn.shopify.com/s/files/1/1088/8842/files/Installation_3_large.jpg" alt="" />
+						</a>
+					</li>
+					<li class="item">
+						<a rel="gallery1" class="fancybox" href="//cdn.shopify.com/s/files/1/1088/8842/files/Installation_4.jpg">
+							<img src="//cdn.shopify.com/s/files/1/1088/8842/files/Installation_4_large.jpg" alt="" />
+						</a>
+					</li>
+				</ul>
+			</div>
+			<br>
+			<p>Join us at Urban Zen for a shoppable exhibition inspired by Donna Karan's travels<br>
+				URBAN ZEN<br>
+				705 Greenwich Street, NYC<br>
+				#UZFALL16
+			</p>
+		</div>
+		<div class="section clearfix center">
+			<h2>Visit Urban Zen</h2>
+			<p>showcasing in season and in store</p>
+			<br>
+			<img src="//cdn.shopify.com/s/files/1/1088/8842/files/Alch_Install_Store_Image.jpg" alt="The Alchemist Shopping Experience" />
+			<br>
+			<a href="/pages/stores/" class="cta-button" title="Our Stores">Vist our stores</a>
+		</div>
+	</div>
+</div>

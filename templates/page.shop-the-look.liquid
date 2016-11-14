@@ -1,0 +1,82 @@
+  <div class="owl-carousel">
+		<div class="item" style="width:300px">
+		  <img src="{{ 'slide1.png' | asset_url | split:'?' | first }}" id="shop-the-look-1" class="shop-the-look-1" alt="Urban Zen - New York City" />
+		</div>
+		<div class="item" style="width:617px">
+		  <img src="{{ 'slide2.png' | asset_url | split:'?' | first }}" id="shop-the-look-2" class="shop-the-look-2" alt="Urban Zen - Manhasset" />
+		</div>
+		<div class="item" style="width:300px">
+		  <img src="{{ 'slide3.png' | asset_url | split:'?' | first }}" id="shop-the-look-1" class="shop-the-look-1" alt="Urban Zen - New York City" />
+		</div>
+		<div class="item" style="width:617px">
+		  <img src="{{ 'slide4.png' | asset_url | split:'?' | first }}" id="shop-the-look-2" class="shop-the-look-2" alt="Urban Zen - Manhasset" />
+		</div>
+		<div class="item" style="width:300px">
+		  <img src="{{ 'slide5.png' | asset_url | split:'?' | first }}" id="shop-the-look-1" class="shop-the-look-1" alt="Urban Zen - New York City" />
+		</div>
+		<div class="item" style="width:300px">
+		  <img src="{{ 'slide6.png' | asset_url | split:'?' | first }}" id="shop-the-look-2" class="shop-the-look-2" alt="Urban Zen - Manhasset" />
+		</div>
+  </div>
+  <div class="clearfix"></div>
+  <div itemtype="http://schema.org/ItemList" id="shop-the-look-container" class="products"></div>
+<script type="text/javascript">
+ 
+$(window).load(function() {
+	var owl = $('.owl-carousel');
+	thisSlide = 1;
+	owl.on('initialized.owl.carousel', function(event) {
+		var shopTheLookClass = 'shop-the-look-' + thisSlide;
+		var link = '/collections/all/'+ shopTheLookClass;
+		var getUrl = link;
+		$.ajax({
+			url: getUrl,
+			type:'GET',
+			success: function(data){
+				$(".products").html($(data).find('.products').html());
+				$("img").unveil(300).css('opacity', 1);
+				if(shopTheLookClass = "shop-the-look-1"){
+					$("[color='Black Viscose']").remove();
+				}
+				{% include 'addToCart-ajax' %}
+			}
+		});
+	});
+	owl.owlCarousel({
+		center:true,
+		lazyLoad: true,
+		dots:true,		 
+		margin:10,
+		loop:true,
+		autoWidth:true,
+		items:4,
+		autoplay:true,
+		autoplayTimeout:5000,
+		autoplayHoverPause:false,
+		rtl: false,
+		nav:true,
+		navText: ["",""]
+	});
+	owl.on('translate.owl.carousel', function(event) {
+		thisSlide++;
+		if(thisSlide > 2) {
+			thisSlide = 1;
+		}
+		var shopTheLookClass = 'shop-the-look-' + thisSlide;
+		var link = '/collections/all/'+ shopTheLookClass;
+		var getUrl = link;
+		$.ajax({
+			url: getUrl,
+			type:'GET',
+			success: function(data){
+				$(".products").html($(data).find('.products').html());
+				$("img").unveil(300).css('opacity', 1);
+				if(shopTheLookClass = "shop-the-look-1"){
+					$("[color='Black Viscose']").remove();
+				}
+				{% include 'addToCart-ajax' %}
+			}
+		});
+	});
+});
+</script>

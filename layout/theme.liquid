@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if IE 9 ]><html class="ie ie9" lang="en"> <![endif]-->
+<!--[if (gte IE 10)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="cleartype" content="on">
+		<meta name="robots" content="index,follow">
+		{% if current_tags %}{% assign meta_tags = current_tags | join: ', ' %}{% endif %}
+		<title>{% if template contains "index" %}{{ page_title }}{% else %}{{ page_title }}{% if current_tags %} {{ 'general.meta.tagged_html' | t: tags: meta_tags }}{% endif %}{% if current_page != 1 %} {{ 'general.meta.page' | t: page_number: current_page }}{% endif %}{% unless page_title contains shop.name %} - {{ shop.name }}{% endunless %}{% endif %}</title>
+		{% if page_description %}
+		<meta name="description" content="{{ page_description | escape }}" />
+		{% endif %}
+		{% include 'social-meta-info' %}
+		{% if collection.previous_product %}
+		<link rel="prev" href="{{ collection.previous_product }}">
+		{% endif %}
+		{% if collection.next_product %}
+		<link rel="next" href="{{ collection.next_product }}">
+		{% endif %}
+		<meta name="HandheldFriendly" content="True">
+		<meta name="MobileOptimized" content="320">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		{{ 'styles.scss.css' | asset_url | stylesheet_tag }}
+		
+		{% if template == 'cart' %} {{ 'checkout_cart.scss.css' | asset_url | stylesheet_tag }}{% endif %}
+	
+		<link rel="shortcut icon" type="image/x-icon" href="{{ 'favicon.png' | asset_url }}">
+		<link rel="canonical" href="{{ canonical_url }}" />
+		<script type="text/javascript" src="{{ 'app.js' | asset_url }}"></script>
+		{% if template contains 'index' or template contains 'philanthropy' or template contains 'our-story' %}
+		<script type="text/javascript">
+		
+		$(window).ready(function() {
+			var windowWidth = $(window).width();
+			$.scrollify({
+				section : "section",
+				interstitialSection : "footer",
+				easing: "easeOutExpo",
+				standardScrollElements: ".drawer-nav",
+				scrollSpeed: 500,
+				sectionName:false,
+				overflowScroll:false,
+				afterRender:function(){
+					if (windowWidth >= 1023) { 
+						$('.removeDesktop').remove();
+						
+						$.scrollify.update();						
+					}	
+					$.scrollify.update();
+				}
+
+			});
+			/*
+			bioEp.init({
+				width: 394,
+				height: 298,
+              	html: "<div class='popup'><form action='//urbanzen.us2.list-manage.com/subscribe/post?u=fc498178459519fae5d27a86e&amp;id=83eef521b7' method='post' id='mc-embedded-subscribe-form' name='mc-embedded-subscribe-form' target='_blank'><label for='Email' class='newsletter__label hidden-label'>email address</label><div class='input-group'><input type='email' value='' placeholder='email address' name='EMAIL' id='Email' class='input-group-field newsletter__input' autocorrect='off' autocapitalize='off'><span class='input-group-btn'><button type='submit' class='cta-button newsletter__submit' name='submit' id='Subscribe'><span class='newsletter__submit-text--large'>submit</span></button></span></div></form></div>",
+				cookieExp: 30,
+              	delay: 5,
+              	showOnDelay: true
+			});
+		});
+			/*$(function() {
+				console.log('Got To Here');
+
+			  var splash = $.cookie('splash');
+			  var cookie_enabled = true;
+
+			  if (cookie_enabled && splash == 'open') {
+				  $('#splash').remove();
+			  } else {
+	  		    if (windowWidth >= 1024) { 
+	  		      $('#splash').html('<div class="text"><i class="icon icon-script-logo"></i></div><iframe id="introVid" src="https://player.vimeo.com/video/179917227?background=1&autoplay=1" width="100%" height="100%" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe><a href="#" class="skip">skip</a>');
+	  			  $('#splash .text').fadeIn(3000);
+	  		    }
+	  			$('.skip').click(function() {
+	  				$('#splash').remove();
+	  			});
+			  }
+			  if (cookie_enabled) {
+			    $.cookie('splash', 'open', { expires: 30 });
+				
+			  }
+			});
+				*/
+		});
+		
+		</script>
+
+		{% endif %}
+		
+		{% if template contains 'customer' %}
+		{{ "shopify_common.js" | shopify_asset_url | script_tag }}
+		{{ "customer_area.js"  | shopify_asset_url | script_tag }}
+		{% endif %}	
+		<!--[if lte IE 8]>
+			{{ 'ie.css' | asset_url | stylesheet_tag }}
+			{{ 'skrollr.ie.js' | asset_url | script_tag }}
+		<![endif]-->
+		{{ content_for_header }}
+	</head>
+	{% if template contains "index" %}
+	{% assign feature_image = true %}
+	{% elsif template contains "collection" and settings.slideshow_collection_enabled %}
+	{% assign feature_image = true %}
+	{% elsif template contains "blog" and settings.slideshow_blog_enabled %}
+	{% assign feature_image = true %}
+	{% elsif template contains "article" and article.image and settings.slideshow_article_enabled %}
+	{% assign feature_image = true %}
+	{% elsif template contains "contact" and settings.slideshow_contact_enabled %}
+	{% assign feature_image = true %}
+	{% else %}
+	{% assign feature_image = false %}
+	{% endif %}
+	<body class="{{ template | replace: '.', '-' | handle }} drawer drawer--left drawer--sidebar {% if template contains 'shop-the-look' %} shop-the-look{% endif %}{% if template contains 'page' %} page{% endif %} {{current_tags}} {% if article.tags contains 'black-bg' %}black-bg{% endif %}{% if template contains 'black-bg' %}black-bg{% endif %}">
+		<div class="msgPopup"></div>
+		<header class="mm-fixed-top" role="banner">
+			<div class="top-menu"><form class="search-form" action="/search"><input type="text" name="q" placeholder="" value="{% if search and search.results.first.price %}{{ search.terms }}{% endif %}" autocapitalize="off" autocomplete="off" autocorrect="off" /><span class=""></span><span class="icon icon-search search-submit ico ico-mglass"></span></form><a href="#cart" class="icon-cart icon icon-shopping-bag cart-button continue"><div id="mdiv"><div class="mdiv"><div class="md"></div></div>
+		</div><span class="medium">({{ cart.item_count }})</span></a></div>
+			<div class="fixed-menu-container desktop_hidden">
+			<button type="button" class="drawer-toggle drawer-hamburger"><span class="sr-only">toggle navigation</span><span class="drawer-hamburger-icon"></span></button><a class="drawer-brand" href="{{ shop.url }}"><i class="icon icon-script-logo"></i>
+			{% if template contains 'index' %}<span class="tagline">A Philosophy of Living By Donna Karan</span>{% endif %}</a>
+			</div>
+			<nav class="drawer-nav" role="navigation">
+				<ul class="drawer-menu">
+					<li><a class="drawer-brand" href="{{ shop.url }}"><i class="icon icon-script-logo"></i>{% if template contains 'index' %}<span class="tagline">A Philosophy of Living By Donna Karan</span>{% endif %}</a></li>	
+					{% for link in linklists['main-menu'].links %}
+					   {% assign child_list_handle = link.title | handleize %}
+					   {% if linklists[child_list_handle].links != blank %}
+					      {% assign submenu_active = false %}
+					      {% for childlink in linklists[child_list_handle].links %}
+					         {% if childlink.active %}
+					            {% assign submenu_active = true %}
+					         {% endif %}
+					      {% endfor %}
+					      <li class="{{ link.title | handleize }} submenu{% if link.active or submenu_active %} selected{% endif %}" aria-haspopup="true">
+					         <a class="origlink" href="{{ link.url }}">{{ link.title }}</a><a href="#" class="drop-toggle">{{ link.title }}</a>
+					         <ul class="sub-menu">
+								 {% for childlink in linklists[child_list_handle].links %}
+								 	{% assign grand_child_list_handle = childlink.title | handle %}  
+								 	{% if linklists[grand_child_list_handle] and linklists[grand_child_list_handle].links.size > 0 %}
+								 		{% assign thirdmenu_active = false %}
+										{% for grandchildlink in linklists[grand_child_list_handle].links %}
+								 	   		{% if grandchildlink.active %}
+								 		   		{% assign thirdmenu_active = true %}
+								 			{% endif %}
+								 		{% endfor %}
+										<li class="thirdmenu{% if childlink.active or thirdmenu_active %} selected{% endif %}" aria-haspopup="true">
+											<a class="origlink" href="{{ childlink.url }}">{{ childlink.title }}</a><a href="#" class="drop-toggle">{{ childlink.title }}</a>
+											<ul class="third-menu">
+												{% for grand_childlink in linklists[grand_child_list_handle].links %}
+													<li class="{{grand_childlink.title | handleize}}{% if grand_childlink.active %} selected{% endif %}">
+														<a href="{{ grand_childlink.url }}">{{ grand_childlink.title }}</a>
+													</li>
+												{% endfor %}
+											</ul>
+										</li>
+									{% else %}
+										<li{% if childlink.active %} class="selected"{% endif %}><a href="{{ childlink.url }}">{{ childlink.title | escape }}</a></li>
+									{% endif %}
+								{% endfor %}
+					         </ul>
+					      </li>
+						  {% else %}
+						  		<li class="{{ link.title | handleize }}{% if link.active %} selected{% endif %}">
+						  			<a href="{{ link.url }}">{{ link.title }}</a>
+					      		</li>
+						  {% endif %}
+					{% endfor %}
+				</ul>
+				
+				<div class="social">
+					<a href="{{ settings.instagram_link }}" title="{{ shop.name }} on Instagram" class="icon-instagram" rel="me" target="_blank"></a>
+					<a href="{{ settings.facebook_link }}" title="{{ shop.name }} on Facebook" class="icon-facebook" rel="me" target="_blank"></a>
+					<a href="{{ settings.pinterest_link }}" title="{{ shop.name }} on Pinterest" class="icon-pinterest" rel="me" target="_blank"></a>
+					<a href="{{ settings.twitter_link }}" title="{{ shop.name }} on Twitter" class="icon-twitter" rel="me" target="_blank"></a>
+				</div>
+			</nav>
+			<div class="drawer-right">
+				<h2 class="light"><span>My Bag</span></h2>
+				<div class="overflow">
+
+					<form action="/checkout" method="post" id="cart">
+					<ul data-money-format="{{ shop.money_format }}" data-shop-currency="{{ shop.currency }}" data-shop-name="{{ shop.name | escape }}">
+						<li class="success_message"><span></span></li>
+						{% if cart.item_count == 0 %}
+						<li class="empty_cart">{{ 'layout.general.empty_cart' | t }}</li>
+						{% else %}
+						{% for item in cart.items %}
+						<li class="cart_item {% if forloop.last %}last_cart_item{% endif %}">
+						
+								{% if item.image %}
+								<div class="cart_image">
+									<a href="{{ item.url }}">
+									<img src="{{ item | img_url: 'medium' | split:'?' | first }}" alt="{{ item.title | escape }}" />
+								</a>
+								</div>
+								{% endif %}
+								<div class="cart-meta">
+									<a href="{{ item.url }}">
+									<div class="item_title">{{ item.product.title }}</div>
+									<div class="item_title">
+										{% if item.product.options.first contains 'Color' %}
+										{% assign words = {{item.variant.option1}} | split: ' ' %}
+										{% for word in words %}{% unless forloop.last %}{{word}}{% endunless %} {% endfor %}
+										{% if item.product.options.last contains 'Size' %} / {{item.variant.option2}}{% endif %}
+										{% elsif item.product.options.first contains 'Size' %}
+										{{item.variant.option1}}
+										{% else %}
+										{% endif %}
+									</div>
+									<strong class="price">{{ item.price | money }}</strong>
+									</a>
+									<p class="mm-counter">
+										<input type="number" min="0" class="quantity" name="updates[]" id="updates_{{ item.id }}" value="{{ item.quantity }}" />
+										<span class="remove">remove</span>
+									</p>
+								</div>
+						
+						</li>
+						{% endfor %}
+						<li class="mm-label">
+							<p class="mm-counter">{{ cart.total_price | money }}</p>
+							<p>
+								<strong>{{ 'layout.general.subtotal' | t }}</strong>
+							</p>
+						</li>
+						<li class="mm-subtitle clearfix">
+							{% if settings.display_special_instructions %}
+							<textarea id="note" name="note" rows="2" placeholder="{{ 'layout.general.cart_note' | t }}" class="clearfix">{{ cart.note }}</textarea>
+							{% endif %}
+
+					
+						</li>
+						{% endif %}
+					</ul>
+					<input type="submit" class="action_button right" value="{{ 'layout.general.checkout' | t }}" />
+				</form>
+			</div>
+			</div>
+			<div class="overlay"></div>
+		</header>
+		<main role="main">
+			<div class="drawer-contents">
+				
+				{% if template contains 'list-collections' %}
+				{% include 'collection-listing' %}
+				{% else %}
+				{{ content_for_layout }}
+				{% endif %}
+
+		{% if template contains "product" and settings.size_chart != blank %}
+			{% unless product.tags contains 'no-size-guide' %}	
+				<div id="size-chart">
+					<h5 class="center">{{ pages[settings.size_chart].title }}</h5>
+					<div class="feature_divider"></div>
+					{{ pages[settings.size_chart].content }}
+				</div>
+			{% endunless %}
+		{% endif %}
+		{% include 'newsletter-popup' %} 
+		{% unless template contains 'campaign' %}
+			<script type="text/javascript">window.$zopim||(function(d,s){var z=$zopim=function(c){z._.push(c)},$=z.s=d.createElement(s),e=d.getElementsByTagName(s)[0];z.set=function(o){z.set._.push(o)};z._=[];z.set._=[];$.async=!0;$.setAttribute("charset","utf-8");$.src="//v2.zopim.com/?3t54ZGpG2CASzlhvqrk3Vp346d7QkbLg";z.t=+new Date;$.type="text/javascript";e.parentNode.insertBefore($,e)})(document,"script");</script>
+		{% endunless %}
+
+	</div>
+	<div class="footerpad"></div>
+	</main>
+{% unless template contains 'index' or template contains 'philanthropy' or template contains 'our-story' %}
+	{% include 'footer' %}
+	{% endunless %}
+	{% if template contains 'alchemist' %}
+		{% include 'shop-by-look' %}
+		
+	{% endif %}
+	</body>
+</html>

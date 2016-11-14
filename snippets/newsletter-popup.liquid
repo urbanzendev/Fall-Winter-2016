@@ -1,0 +1,18 @@
+{% if settings.newsletter_popup %}   
+	<a id="newsletter" href="#target"></a>
+	<span style="display: none;">
+	 <span id="target">
+		 <div class="popup-text left"><h1 class="light">LET'S CONNECT<br>COLLABORATE & COMMUNICATE</h1><p class="p2 light">Sign up for our newsletter to receive special updates and insider offers.</p></div>
+		 <div class="mobile_hidden">
+		 	<img width="600" height="400" src="{{ 'Email_Signup_Bkgd_D.jpg' | asset_url | split:'?' | first  }}" />
+	 	</div>
+		<div class="desktop_hidden">
+			<img width="600" height="600" src="{{ 'Email_Signup_Bkgd_M.jpg' | asset_url | split:'?' | first  }}" />
+		</div>
+    {% if settings.newsletter_popup_form %}
+      {% include 'newsletter' %}
+    {% endif %}
+	  </span>
+	</span>
+{% endif %}
+

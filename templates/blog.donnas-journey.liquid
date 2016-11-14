@@ -1,0 +1,22 @@
+<iframe src="https://player.vimeo.com/video/180206661?autoplay=1" width="100%" style="min-height:600px;" height="100%" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+<div class="container">	
+	<div class="blog-loop">
+    {% for article in blog.articles %}
+			<div class="article {% cycle 'odd', 'even' %}">
+				<a href="{{ article.url }}" title="{{ article.title | escape }}">
+					<img src="{{ article.image | img_url: 'grande' }}" alt="{{ article.title | escape }}" />
+				</a>
+				<div class="meta">
+					<h4><a href="{{ article.url }}">{{ article.title}}</a></h4>
+					<div class="blog_meta tags">
+						{% for tag in article.tags %}
+							{% if tag != 'signature' and tag != 'hide post' %}
+								<span><a href="{{ shop.url }}/blogs/{{ blog.handle }}/tagged/{{ tag | handleize }}" title="{{ blog.title }} {{ 'blogs.general.tagged' | t }} {{ tag | escape }}">{{ tag }}</a></span> 
+							{% endif %}
+						{% endfor %}
+					</div>
+				</div>
+			</div>
+	{% endfor %}
+	</div>
+</div>

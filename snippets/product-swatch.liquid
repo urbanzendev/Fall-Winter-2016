@@ -1,0 +1,207 @@
+{% assign file_extension = 'png' %}
+{% assign swatch = product-swatch %}
+{% if swatch == blank %}
+<div class="swatch error">
+  <p>You must include the snippet swatch.liquid with the name of a product option.</p> 
+  <p>Use: <code>{% raw %}{% include 'swatch' with 'name of your product option here' %}{% endraw %}</code></p>
+  <p>Example: <code>{% raw %}{% include 'swatch' with 'Color' %}{% endraw %}</code></p>
+</div>
+{% else %}
+
+{% assign found_option = false %}
+{% assign is_color = false %}
+{% assign option_index = 0 %}
+{% assign is_size = false %}
+{% for option in product.options %}
+  {% if option == swatch %}
+    {% assign found_option = true %}
+    {% assign option_index = forloop.index0 %}
+    <style>
+      label[for="product-select-option-{{ option_index }}"] { display: none; }
+      #product-select-option-{{ option_index }} { display: none; }
+      #product-select-option-{{ option_index }} + .custom-style-select-box { display: none !important; }
+    </style>
+    <script>$(window).load(function() { $('.selector-wrapper:eq({{ option_index }})').hide(); });</script>
+    {% assign downcased_option = swatch | downcase %}
+    {% if downcased_option contains 'color' or downcased_option contains 'colour' %}
+      {% assign is_color = true %}
+    {% endif %} 
+  {% endif %}
+{% endfor %}
+
+{% unless found_option %}
+<div class="swatch error">
+  <p>You included the snippet swatch.liquid with the name of a product option — <code>'{{ swatch }}'</code> — that does not belong to your product.</p>
+  <p>Use <code>{% raw %}{% include 'swatch' with 'name of your product option here' %}{% endraw %}</code></p>
+  <p>Example: <code>{% raw %}{% include 'swatch' with 'Color' %}{% endraw %}</code></p>
+  <p><strong>This is case-sensitive!</strong> Do not put in <code>'color'</code> if your product option name is <code>'Color'</code>.</p>
+</div>
+{% else %}
+<div class="swatch clearfix" data-option-index="{{ option_index }}">
+	 <p class="p6 option-title">
+		 {{ swatch }}{% if is_color %}:{% endif %}
+		 {% if variant.option1 != blank and is_color %}
+			 {% assign values = '' %}
+			 {% for variant in product.variants %}
+			 	{% assign value = variant.options[option_index] %}
+				{% unless values contains value %}
+					{% assign values = values | join: ',' %}
+	        		{% assign values = values | append: ',' | append: value %} 
+	        		{% assign values = values | split: ',' %}
+					{% if is_color %}
+						{% assign words = {{value}} | split: ' ' %}
+						<span data-value="{{ value | escape }}" class="swatch_name">
+							{% for word in words %}
+								{% unless forloop.last %}
+									{{word}}
+								{% endunless %}
+							{% endfor %}
+						</span>
+					{% endif %}
+				{% endunless %}
+			{% endfor %}
+		{% endif %}
+	</p>
+  
+  {% assign values = '' %}
+  {% for variant in product.variants %}
+    {% assign value = variant.options[option_index] %}
+    {% unless values contains value %}
+      {% assign values = values | join: ',' %}
+      {% assign values = values | append: ',' | append: value %} 
+      {% assign values = values | split: ',' %}
+	  
+      <div data-value="{{ value | escape }}" class="p5 swatch-element {% if is_color %}color {% else %} size {% endif %}{{ value | handle }} {% if variant.available %}available{% else %}soldout{% endif %}">
+        <input class="{{ variant.id }}" id="swatch-{{ option_index }}-{{ value | handle }}" type="radio" name="option-{{ option_index }}" value="{{ value | escape }}"{% if forloop.first %} checked{% endif %} />
+        {% if is_color %}
+        <label class="{{ variant.id }}" id="{{ value | handle }}" for="swatch-{{ option_index }}-{{ value | handle }}" style="background-color: {{ value | split: ' ' | last | handle }}; background-image: url({{ value | handle | append: '.' | append: file_extension | asset_url }})">
+          <img class="crossed-out" src="{{ 'soldout.png' | asset_url }}" />
+        </label>
+        {% else %}
+        <label class="{{ variant.id }}" id="{{ value | handle }}" for="swatch-{{ option_index }}-{{ value | handle }}">
+          {{ value }}
+          <img class="crossed-out" src="{{ 'soldout.png' | asset_url }}" />
+        </label>
+        {% endif %}
+      </div>
+    {% endunless %}
+  {% endfor %}
+</div>
+
+{% endunless %}
+
+{% endif %}
+<script type="text/javascript">
+
+  var disabledClicked;
+  $('ul.slides li.thumbnail-curated-image').click(function(event) {
+    if ( $(this).hasClass('thumbnail-curated-image') ) {
+      event.preventDefault();
+      console.log('flex curated')
+      var curatedImageIndex = $('li[data-title="curated-image"]').index();   
+      $('.product_slider').data("flexslider").flexslider(curatedImageIndex);
+    } 
+  });
+
+ 
+  $('.swatch-element.size').click(function() {
+
+    if($(this).hasClass('soldout')) {
+       return false;
+  	}
+       
+    $('.swatch-element.size').removeClass('swatch-selected');
+    $(this).addClass('swatch-selected');
+  });
+  
+  $('.swatch-element.color').click(function() {
+    $('.override-hide').each(function() {
+      
+      $(this).css('transform', 'none');
+      
+    });
+    var checkForDisabled = $('.swatch-element.color').find('input:disabled').length;
+    var isThisDisabled = $(this).find('input:disabled');
+
+      var swatch = $(this).attr('data-value').toLowerCase().replace(/ /g, '-');
+      $('.flex-active-slide').removeClass('flex-active-slide').css('opacity', '0');
+      $('li[data-title=' + swatch + ']').first().addClass('flex-active-slide');
+      $('.thumbnail-'+swatch).first().addClass('flex-active-slide');
+      $('.override-hide').removeClass('override-hide');
+    if(isThisDisabled.length > 0) {      
+      $(isThisDisabled).removeAttr('disabled');
+      setTimeout(function() {
+        $(isThisDisabled).attr('disabled', 'disabled');
+      }, 1);
+    } else {
+      // $('.slides li').removeClass('override-zindex');
+    }
+    $('.swatch-element.color').removeClass('swatch-selected');
+    $(this).addClass('swatch-selected');
+	$('.swatch_name').each(function(){
+		$(this).removeClass('swatch-color-selected');
+	    var dataValue = $('.color.swatch-selected').attr('data-value');
+		if($(this).attr('data-value') == $('.color.swatch-selected').attr('data-value')){
+			$('.swatch_name[data-value="'+dataValue+'"]').addClass('swatch-color-selected');
+			console.log(dataValue+' in loop');
+		}
+	});
+	
+	
+    
+	setTimeout(checkLength, 25);
+               
+               
+    function checkLength() {
+   	   var length = $('.swatch-element.size.available').length;
+       if(length == 1) {
+        
+         $('.swatch-element.size').removeClass('swatch-selected');
+         $('.swatch-element.size.available').addClass('swatch-selected');
+         
+       }
+    }
+    
+  });
+  
+  var colorLength = $('.swatch-element.color').length;
+  var colorSoldOutLength = $('.swatch-element.color').find('img.crossed-out.always-show').length;
+  var hasVariant = window.location.href.indexOf('?variant=');
+  if(colorLength == colorSoldOutLength) {
+   
+    var color = $('.swatch-element.color:first').attr('data-value');
+    var colorString = color.toLowerCase().replace(/ /g, '-');
+    console.log(colorString);
+    setTimeout(function() {
+      $('.thumbnail-' + colorString).addClass('override-hide');
+      var amount = 0;
+      var height = 105;
+      $('.override-hide').each(function() {
+        //$(this).css('transform','translateY('+ amount + 'px)');
+       // amount = amount + height;
+      });
+    }, 100); 
+    
+  }
+ 
+  setTimeout(function() {
+  	var dataVal = $('.swatch-element.color.swatch-selected').attr('data-value').toLowerCase().split(' ').join('-');
+    $('.thumbnail-' + dataVal).addClass('override-hide');
+    var amount = 0;
+    var height = 105;
+    $('.override-hide').each(function() {
+    //  $(this).css('transform','translateY('+ amount + 'px)');
+   //   amount = amount + height;
+    });
+  }, 100); 
+
+</script>
+{% include 'linked-options' %}
+<script>
+    $('.swatch-element.soldout').each(function() {
+    $(this).find('.crossed-out').addClass('always-show');
+    $(this).find('input').removeAttr('disabled');
+    $(this).removeClass('soldout');
+    
+  });
+</script>

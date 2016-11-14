@@ -1,0 +1,15 @@
+<div class="sixteen columns">
+	<div class="header-title">
+    	<h1>{{ collection.title }}{{page.title}}</h1>
+  		<h3 class="subtitle text-center">{{current_tags | replace: '-', ' ' | replace: '["', '' | replace: '"]', '' }}</h3>
+	</div>
+    {% if collection.products.size == 0 %}
+      <div class="section no-match clearfix">     
+        <p class="quote">{{ 'collections.general.no_matches' | t }}</p>
+      </div>
+    {% else %}
+      {% assign products = collection.products %}
+      {% assign products_per_row = settings.products_per_row %}
+      {% include 'product-loop' with settings.collection_sidebar %}
+    {% endif %}
+  </div>

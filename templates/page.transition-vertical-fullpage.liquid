@@ -1,0 +1,63 @@
+</div>
+<div id="fullpage">
+<div class="vertical-scrolling">
+<div class="slideFull slide1 center">
+	<div class="text text1">
+		<h2>Explore</h2>
+		<h1>Modern Souls Collection</h1>		
+	</div>
+</div>	
+</div>
+<div class="vertical-scrolling">
+<div class="slideFull slide2 center">
+	<div class="text text2">
+		<h2>Discover</h2>
+		<h1>New Apparel To keep you Warm</h1>
+	</div>
+</div>	
+</div>
+<div class="vertical-scrolling">
+<div class="slideFull slide3 center">
+	<div class="text text3">
+		<h2>Another Slide</h2>
+		<h1>Width all the fixin's</h1>
+	</div>
+</div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.6.6/jquery.fullPage.min.js"></script>
+<script type="text/javascript">
+	// variables
+$(document).ready(function() {
+	// fullpage customization
+		$('#fullpage').fullpage({
+			sectionSelector: '.vertical-scrolling',
+			navigation: false,
+			slidesNavigation: true,
+			controlArrows: false,
+			scrollingSpeed: 1500,
+		    css3: true
+		});
+	});
+</script>
+<style>
+
+
+.slideFull	.text {
+		position:absolute;
+	  width:100%;
+	  top: 50%;
+	  text-align:center;
+	  left: 50%;
+	  -moz-transform: translate3d(-50%, -50%, 0) translateZ(0px) scale(1.0, 1.0);
+	  -webkit-transform: translate3d(-50%, -50%, 0) translateZ(0px) scale(1.0, 1.0);
+	  -o-transform: translate3d(-50%, -50%, 0) translateZ(0px) scale(1.0, 1.0);
+	  transform: translate3d(-50%, -50%, 0) translateZ(0px) scale(1.0, 1.0);
+	}
+	.text1 h1,.text1 h2{color:#fff;}
+	.slideFull{height:100vh;position:relative;overflow:hidden;  -webkit-background-size: cover;-moz-background-size: cover;-o-background-size: cover;background-size: cover;}
+	.slide1{z-index:3;background-image:url({{ 'HP_D_Accessories_NotOneMore.jpg' | asset_url | split:'?' | first }})}
+	.slide2{z-index:2;background-image:url({{ 'HP_D_ModernSouls.jpg' | asset_url | split:'?' | first }})}
+	.slide3{z-index:1;background-image:url({{ 'HP_White-Shirts_D.jpg' | asset_url | split:'?' | first }})}
+	
+</style>

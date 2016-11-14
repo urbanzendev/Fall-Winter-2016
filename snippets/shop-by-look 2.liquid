@@ -1,0 +1,138 @@
+<script type="text/javascript">
+$(window).ready(function() {
+	windowWidth = $(window).width();
+	shopContainer = '<div class="shop-the-look-container-outer"><div itemtype="http://schema.org/ItemList" class="shop-the-look-container productDrawer"></div></div>';
+	$('.flexwrap').click(function(event) {
+				$('.row-container').removeClass('open');	
+		$(this).addClass('shopActive');
+		console.log(this);
+		if (windowWidth >= 1023) { 
+			$(this).closest('.row-container').append(shopContainer);
+		}else{
+			$('.shopActive').append(shopContainer);
+		}
+		var shopTheLookClass = $(this).attr('shop-the-look');
+		var shopTheLookClassNumber = shopTheLookClass.replace('shop-the-look-','');
+		var link = '/collections/all/'+ shopTheLookClass;
+		var getUrl = link;
+    	var clickover = $(event.target);
+		var _opened = $(".flexwrap").hasClass("active-shop-the-look");
+		
+		if (_opened === false) {   
+			$.ajax({
+				url: getUrl,
+				type:'GET',
+				success: function(data){	
+					  
+					$(event.target).closest('.row-container').find('.shop-the-look-container').slideDown('slow').toggleClass('previousDrawer opened').html($(data).find('.products').html());
+						{% include 'addToCart-ajax' %}
+					$(event.target).parent().parent().addClass('active-shop-the-look close');
+					$(event.target).parent().append('<div class="overlay-white close"></div>');
+					$(event.target).closest('.row-container').find('.shop-the-look-container-outer').prepend('<h3 class="look-number align_right">look '+shopTheLookClassNumber+'</h3><h3 class="close">close</h3>');
+				 		$('html,body').animate({scrollTop: $(".shop-the-look-container").offset().top -100 } ,'slow');
+					$(event.target).closest('.row-container').addClass('open');
+					$("img").unveil(300).css('opacity', 1);
+				
+					if(shopTheLookClass == "shop-the-look-1"){
+						$(".productSortItem[color^='Wine ']").addClass('active'); 	
+					}	
+					else if(shopTheLookClass == "shop-the-look-2"){
+						$(".productSortItem[color^='Wine ']").addClass('active'); 	
+					}	
+					else if(shopTheLookClass == "shop-the-look-3"){
+						$(".productSortItem[color^='Wine ']").addClass('active'); 	
+					}	
+					else if(shopTheLookClass == "shop-the-look-4"){
+						$(".productSortItem[color^='Wine ']").addClass('active'); 	
+					}	
+					else if(shopTheLookClass == "shop-the-look-5"){
+						$(".productSortItem[color^='Wine ']").addClass('active'); 	
+					}	
+					else if(shopTheLookClass == "shop-the-look-6"){
+						$(".productSortItem[color^='Wine ']").addClass('active'); 	
+					}	
+					else if(shopTheLookClass == "shop-the-look-7"){
+						$(".productSortItem[color^='Wine ']").addClass('active'); 	
+					}	
+					else if(shopTheLookClass == "shop-the-look-8"){
+						$(".productSortItem[color^='Wine ']").addClass('active'); 	
+					}	
+					else if(shopTheLookClass == "shop-the-look-9"){
+						$(".productSortItem[color^='Petrol ']").addClass('active'); 	
+					}	
+					else if(shopTheLookClass == "shop-the-look-10"){
+						$(".productSortItem[color^='Petrol ']").addClass('active'); 	
+					}	
+					else if(shopTheLookClass == "shop-the-look-11"){
+						$(".productSortItem[color^='Petrol ']").addClass('active'); 	
+					}	
+					else if(shopTheLookClass == "shop-the-look-12"){
+						$(".productSortItem[color^='Petrol ']").addClass('active'); 	
+					}	
+					else if(shopTheLookClass == "shop-the-look-13"){
+						$(".productSortItem[color^='Steel ']").addClass('active'); 	
+					}	
+					else if(shopTheLookClass == "shop-the-look-14"){
+						$(".productSortItem[color^='Mud ']").addClass('active'); 	
+					}	
+					else if(shopTheLookClass == "shop-the-look-15"){
+						$(".productSortItem[color^='Mud ']").addClass('active'); 	
+					}	
+					else if(shopTheLookClass == "shop-the-look-16"){
+						$(".productSortItem[color^='Mud ']").addClass('active'); 	
+					}	
+					else if(shopTheLookClass == "shop-the-look-17"){
+						$(".productSortItem[color^='Dove Grey ']").addClass('active'); 	
+					}	
+					else if(shopTheLookClass == "shop-the-look-18"){
+						$(".productSortItem[color^='Dove Grey ']").addClass('active'); 	
+					}	
+					else if(shopTheLookClass == "shop-the-look-19"){
+						$(".productSortItem[color^='Dove Grey ']").addClass('active'); 	
+					}	
+					else if(shopTheLookClass == "shop-the-look-20"){
+						$(".productSortItem[color^='Black ']").addClass('active'); 	
+					}	
+					else if(shopTheLookClass == "shop-the-look-21"){
+						$(".productSortItem[color^='Black ']").addClass('active'); 	
+					}	
+					else if(shopTheLookClass == "shop-the-look-22"){
+						$(".productSortItem[color^='Black ']").addClass('active'); 	
+					}	
+					else if(shopTheLookClass == "shop-the-look-23"){
+						$(".productSortItem[color^='Black ']").addClass('active'); 	
+					}	
+					else if(shopTheLookClass == "shop-the-look-24"){
+						$(".productSortItem[color^='Black ']").addClass('active'); 	
+					}	
+					else if(shopTheLookClass == "shop-the-look-25"){
+						$(".productSortItem[color^='Black ']").addClass('active'); 	
+					}	
+					else if(shopTheLookClass == "shop-the-look-26"){
+						$(".productSortItem[color^='Black ']").addClass('active'); 	
+					}	
+					$('.flexwrap').removeClass('shopActive');
+				}
+			});
+		
+		}
+		$('.flexwrap.shopActive').on('click','.close', function(event){
+			event.preventDefault();
+			$('.shop-the-look-container').slideUp('slow');
+			$('.shop-the-look-container').empty();
+			$('.overlay-white').remove();
+			$('.parentItem').removeClass('active-shop-the-look');		
+			$('.shop-the-look-container').removeClass('opened');
+			$('.shop-the-look-container-outer').remove();
+			$('.flexwrap').removeClass('shopActive');
+			console.log('CLICK!');
+			$('.close').removeClass('close');
+			$('html,body').animate({scrollTop: $(".row-container.open").offset().top -75 } ,'slow');
+		});
+
+		
+		
+		});
+	
+	});
+</script>

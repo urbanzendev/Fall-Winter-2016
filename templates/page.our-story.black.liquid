@@ -1,0 +1,96 @@
+<div id="fullPage"><!--
+	<section class="section two center">
+		<div class="text text1">
+			<h2>Our Soulful Purpose</h2>
+			<p>Urban Zen embraces conscious consumerism. A marriage of commerce and philanthropy, it ‘dresses and addresses’ an urban lifestyle by offering real-life solutions that connects mind, body and spirit.</p>
+			<p>Seasonless and timeless, every product we offer advances the greater good with integrity of design and by whom it benefits. We raise awareness as to what is happening the world while offering answers as to what we can do – as a consumer and a community - to make a difference. </p>
+			
+		</div>
+		<div class="cell-video-container" id="#our-story">
+		</div>
+		<div class="overlay"></div>
+	</section> -->
+	<section class="section three center">
+		<div class="centeredBox">
+			<div class="half thumbnail fadeIn mobile_hidden">
+				<img width="100%" height="auto" src="{{ 'transparent.gif' | asset_url | split:'?' | first  }}" data-src="{{'dm_ourstory_founder_grande.jpg' | asset_url | split:'?' | first}}" alt="A Message From Our Founder, Donna Karan">
+			</div>
+			<div class="half">
+				<div class="centeredTextBox">
+					<h3 class="light">Donna Karan</h3>
+					<h2>Our Founder</h2>
+					<p class="mobile_hidden">A world traveler, a lifelong yogi, as well as mother and grandmother, Donna considers Urban Zen the natural extension of her desire to find the missing link in the areas she cares most about. It is also the realization of Donna’s dream not just to dress people, but to address them as well.</p>
+					<p class="desktop_hidden">A designer, traveler, yogi, philanthropist, mother and grandmother, Donna considers Urban Zen the natural extension of her desire to find the missing link in the areas she cares most about.</p>
+				</div>
+			</div>
+		</div>
+	</section> 
+	<section class="section five center">
+		<div class="text text1 mobile_hidden">
+			<h2>Our Soulful Purpose</h2>
+			<p>Urban Zen embraces conscious consumerism. A marriage of commerce and philanthropy, it ‘dresses and addresses’ an urban lifestyle by offering real-life solutions that connects mind, body and spirit.<br><br>Seasonless and timeless, every product we offer advances the greater good with integrity of design and by whom it benefits. We raise awareness about what is happening in the world, while offering answers to what we can do - as a consumer and a community - to make a difference.<br><br><h2>Our Soulful Promise</h2><p>As founded by Donna Karan, Urban Zen’s mission is to raise awareness and inspire change to the issues that touch all of our hearts. We do that through the Urban Zen Foundation creating integral connections on individual and global levels, bringing mind, body and spirit to preserving cultures, well-being and the education of children.</p>
+			
+		</div>
+		<div class="text desktop_hidden">
+			<h2>Our Soulful Promise</h2>
+			<p>Urban Zen embraces conscious consumerism. A marriage of commerce and philanthropy, it ‘dresses and addresses’ an urban lifestyle.</p>
+		</div>
+		<div class="overlay"></div>
+	</section>
+	<section class="section four pillars center">
+		<div class="flexbox-container">
+			<div class="flex column">
+				<h2>Preserving Cultures</h2>
+				<p class="mobile_hidden">We help cultures maintain the natural essence and identity in the face of globalization. We create programs that help communities preserve their unique cultural and spiritual values, allowing us to celebrate their creativity and craftsmanship.</p>
+			</div>
+			<div class="flex column">
+			
+				<h2>Well-Being</h2>
+				<p class="mobile_hidden">Our mission to shift the current healthcare paradigm to include integrative medicine and promote patient advocacy. We treat the patient with the same passion we treat the disease by combining western science with nutrition, yoga and eastern healing practices.</p>
+			</div>
+			<div class="flex column">
+		
+				<h2>Empowering Children</h2>
+				<p class="mobile_hidden">We seek to empower our children, giving them the knowledge and tools to overcome obstacles. We collaborate with like-minded children’s organizations and create programs to enhance children’s spiritual, physical and emotional growth.</p>
+			</div>
+
+		<div class="overlay"></div>
+	</section> 
+	<!--
+	<section class="section stores six center">
+		<div class="flexbox-container">
+			<div class="flex column">
+				<div class="one-third">
+					<h2>Urban Zen is the calm in the chaos of modern life.</h2>
+					<p>Our artisan-inspired lifestyle seeks to simplify dressing with timelessness and ease.</p>
+					<a class="cta-button" href="/pages/stores">for store hours</a>
+				</div>
+			<!--	<div class="two-thirds">
+					<div class="simpleslider fadeIn">
+							<ul class="slides">
+								<li class="alpha inline thumbnail">
+									<img src="{{ 'loader.gif' | asset_url | split:'?' | first }}" data-src="{{ 'Stores_NYC_1.jpg' | asset_url | split:'?' | first }}" alt="Urban Zen - New York City" />
+								</li>
+								<li class="alpha inline thumbnail">
+									<img src="{{ 'loader.gif' | asset_url | split:'?' | first }}" data-src="{{ 'Stores_Manhasset_2.jpg' | asset_url | split:'?' | first }}" alt="Urban Zen - Manhasset" />
+								</li>
+								<li class="alpha inline thumbnail">
+									<img src="{{ 'loader.gif' | asset_url | split:'?' | first }}" data-src="{{ 'Stores_SH_3c.jpg' | asset_url | split:'?' | first }}" alt="Urban Zen - Sag Harbor" />
+								</li>
+							</ul>
+						</div>
+				</div>-->
+			<!--</div>
+		</div>
+		<div class="overlay"></div>
+	</section>-->
+	{% include 'footer' %}
+</div>
+<script type"text/javascript">
+	$(document).ready(function() {	
+		var windowWidth = $(window).width();
+	    if (windowWidth >= 1024) { 
+	      $('.section.two .cell-video-container').html('<iframe src="https://player.vimeo.com/video/180809123?background=1&autoplay=1" width="100%" height="auto" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>');	
+	    }
+	});
+</script>
